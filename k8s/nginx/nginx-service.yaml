@@ -10,7 +10,9 @@ spec:
     name: metrics 
   selector: 
     app: nginx 
-
+---
+apiVersion: v1 
+kind: Service 
 metadata: 
   name: nginx-srv-svc 
   labels: 
