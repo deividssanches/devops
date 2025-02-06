@@ -10,3 +10,14 @@ spec:
     name: metrics 
   selector: 
     app: nginx 
+
+metadata: 
+  name: nginx-srv-svc 
+  labels: 
+    app: nginx 
+spec: 
+  ports: 
+  - port: 80
+    name: nginx-server 
+  selector: 
+    app: nginx     

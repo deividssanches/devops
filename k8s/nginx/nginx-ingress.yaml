@@ -8,7 +8,7 @@ metadata:
     jenkins.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: nginx.sanches.com
+  - host: nginx-metrics.sanches.com
     http:
       paths:
       - path: /
@@ -18,4 +18,15 @@ spec:
             name: nginx-svc
             port:
               number: 9113
-  ingressClassName: nginx          
+#  ingressClassName: nginx
+  - host: nginx.sanches.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-srv-svc
+            port:
+              number: 80
+  ingressClassName: nginx              
