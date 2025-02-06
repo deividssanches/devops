@@ -9,18 +9,18 @@ metadata:
   name: jenkins-admin
   namespace: ci-cd
 ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#  name: jenkins-pvc
-#  namespace: ci-cd
-# spec:
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 10Gi
-  # storageClassName: <your-storage-class> # Uncomment and specify if needed
+ apiVersion: v1
+ kind: PersistentVolumeClaim
+ metadata:
+  name: jenkins-pvc
+  namespace: ci-cd
+ spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+   #storageClassName: jenkns # Uncomment and specify if needed
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,7 +50,7 @@ spec:
         - containerPort: 50000
         env:
         - name: JAVA_OPTS
-          value: "-Djenkins.install.runSetupWizard=false -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85"
+          value: "-Djenkins.install.runSetupWizard=true -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85"
         - name: JENKINS_ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -63,9 +63,9 @@ spec:
           limits:
             memory: "4Gi"
             cpu: "2000m"
-       # volumeMounts:
-       # - name: jenkins-data
-       #   mountPath: /var/jenkins_home
+        volumeMounts:
+        - name: jenkins-data
+          mountPath: /var/jenkins_home
         livenessProbe:
           httpGet:
             path: /login
@@ -82,10 +82,10 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
-#      volumes:
-#      - name: jenkins-data
-#        persistentVolumeClaim:
-#          claimName: jenkins-pvc
+      volumes:
+      - name: jenkins-data
+        persistentVolumeClaim:
+          claimName: jenkins-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -93,7 +93,7 @@ metadata:
   name: jenkins-service
   namespace: ci-cd
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     port: 8080
