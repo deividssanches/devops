@@ -8,5 +8,5 @@
 *.code-workspace
 
 # secrets folder
-.k8s/secrets/*
+.secrets/*
 
