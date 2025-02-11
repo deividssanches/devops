@@ -6,5 +6,5 @@
 *.code-workspace
 
 # secrets folder
-.k8s/secrets/
+.k8s/secrets/*
 
