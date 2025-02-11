@@ -51,11 +51,11 @@ spec:
         env:
         - name: JAVA_OPTS
           value: "-Djenkins.install.runSetupWizard=true -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85"
-        - name: JENKINS_ADMIN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: jenkins-secrets
-              key: admin-password
+        #- name: JENKINS_ADMIN_PASSWORD
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: jenkins-secrets
+        #      key: admin-password
         resources:
           requests:
             memory: "2Gi"
