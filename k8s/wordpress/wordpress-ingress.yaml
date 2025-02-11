@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  namespace: applications
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    jenkins.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: wordpress.sanches.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wordpress
+            port:
+              number: 80
+  ingressClassName: nginx          
