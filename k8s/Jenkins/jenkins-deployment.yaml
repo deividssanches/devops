@@ -58,7 +58,7 @@ spec:
         #      key: admin-password
         resources:
           requests:
-            memory: "2Gi"
+            memory: "1Gi"
             cpu: "1000m"
           limits:
             memory: "4Gi"

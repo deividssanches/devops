@@ -4,8 +4,11 @@ metadata:
   name: wordpress-ingress
   namespace: applications
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    jenkins.ingress.kubernetes.io/rewrite-target: /
+    #kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure    
+    wordpress.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: wordpress.sanches.com
@@ -18,4 +21,5 @@ spec:
             name: wordpress
             port:
               number: 80
-  ingressClassName: nginx          
+  #ingressClassName: nginx   
+  ingressClassName: traefik       
