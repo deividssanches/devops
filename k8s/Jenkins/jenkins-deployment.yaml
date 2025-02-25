@@ -61,7 +61,7 @@ spec:
             memory: "0.5Gi"
             cpu: "1000m"
           limits:
-            memory: "3.5Gi"
+            memory: "3Gi"
             cpu: "2000m"
         volumeMounts:
         - name: jenkins-data
