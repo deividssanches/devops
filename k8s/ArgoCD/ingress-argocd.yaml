@@ -11,6 +11,7 @@ spec:
   ingressClassName: traefik
   rules:
   - host: argocd.sanches.com
+
     http:
       paths:
       - path: /
@@ -20,3 +21,4 @@ spec:
             name: argocd-server
             port:
               number: 8080
+    
