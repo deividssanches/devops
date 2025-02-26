@@ -6,7 +6,7 @@ spec:
   destination:
     name: rancher-desktop
     namespace: ci-cd
-    server: ''
+    server: 
   source:
     path: k8s/ArgoCD/app-of-apps
     repoURL: https://github.com/deividssanches/devops/
