@@ -3,10 +3,6 @@ kind: application
 metadata:
   name: jenkins
 spec:
-  destination:
-    name: rancher-desktop
-    namespace: ci-cd
-    server: ''
 project: default
 source:
   repoURL: https://github.com/deividssanches/devops
