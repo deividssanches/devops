@@ -57,9 +57,9 @@ spec:
         #      name: jenkins-secrets
         #      key: admin-password
         resources:
-          requests:
-            memory: "0.5Gi"
-            cpu: "1000m"
+          #requests:
+          #  memory: "0.5Gi"
+          #  cpu: "1000m"
           limits:
             memory: "3Gi"
             cpu: "2000m"
