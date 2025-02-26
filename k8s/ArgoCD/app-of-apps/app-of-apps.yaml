@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/vlaplha1
+apiVersion: argoproj.io/v1alpha1
 kind: application
 metadata:
   name: app-of-apps
