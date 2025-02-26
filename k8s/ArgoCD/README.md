@@ -4,7 +4,7 @@ kubctl apply -f install-ArgoCD.yaml -n ci-cd
 ```
 Add Ingress:
 ```bash
-kubectl apply -f ingress-argocd.yaml
+kubectl apply -f ingress-argocd.yaml -n ci-cd
 ```
 Or, use port-foward:
 ```bash
