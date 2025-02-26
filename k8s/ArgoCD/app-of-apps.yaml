@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: application
+metadata:
+  name: app-of-apps
+spec:
+  destination:
+    name: rancher-desktop
+    namespace: ci-cd
+    server: ''
+  source:
+    path: k8s/ArgoCD/app-of-apps
+    repoURL: https://github.com/deividssanches/devops/
+    targetRevision: development
+  sources: []
+  project: default
