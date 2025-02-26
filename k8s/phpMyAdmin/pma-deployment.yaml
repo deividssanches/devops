@@ -24,8 +24,8 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: PMA_ABSOLUTE_URI
-          value: pma.sanches.com
+        #- name: PMA_ABSOLUTE_URI
+        #  value: pma.sanches.com
         - name: PMA_HOST
           value: mysql.mysql-std.svc.cluster.local
         - name: PMA_PORT
