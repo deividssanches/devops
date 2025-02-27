@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: application
 metadata:
-  name: jwordpress
+  name: wordpress
   namespace: applications
 spec:
   project: default

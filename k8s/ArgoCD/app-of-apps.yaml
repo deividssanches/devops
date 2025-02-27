@@ -3,12 +3,11 @@ kind: application
 metadata:
   name: app-of-apps
 spec:
-  destination:
-    name: rancher-desktop
+  destination: 
     namespace: ci-cd
-    server: 
+    server: https://192.168.64.3:6443
   source:
-    path: k8s/ArgoCD/app-of-apps
+    path: k8s/ArgoCD/app-of-apps/apps/
     repoURL: https://github.com/deividssanches/devops/
     targetRevision: development
   sources: []
