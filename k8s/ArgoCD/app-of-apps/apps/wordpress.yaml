@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: AppProject
 metadata:
   name: wordpress
   namespace: applications
