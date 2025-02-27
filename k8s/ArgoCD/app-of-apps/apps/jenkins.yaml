@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+kind: AApplication
 metadata:
   name: jenkins
   namespace: ci-cd
