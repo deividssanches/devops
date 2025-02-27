@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: application
 metadata:
   finalyzers:
-    - resources-finalyzer.argocd.argoproj.io
+    - resources-finalyzer.applications.argoproj.io
   labels:
     app.kubernetes.io/instance: app-of-apps
   name: pma
