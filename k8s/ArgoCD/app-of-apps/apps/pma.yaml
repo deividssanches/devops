@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: application
 metadata:
+  finalyzers:
+    - resources-finalyzer.argocd.argoproj.io
+  labels:
+    app.kubernetes.io/instance: app-of-apps
   name: pma
   namespace: applications
-  finalyzers:
-  - resources-finalyzer.argocd.argoproj.io
 spec:
+  destination:
+    namespace: applications
+    server: https://192.168.64.3:6443
   project: default
   source:
-    repoURL: https://github.com/deividssanches/devops/
     path: k8s/phpMyAdmin/
+    repoURL: https://github.com/deividssanches/devops/
     targetRevision: development
-  destination:
-    server: https://192.168.64.3:6443
-    namespace: applications
   syncPolicy:
     automated:
       prune: true
