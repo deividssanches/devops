@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ci-cd-projects
+  namespace: ci-cd
+spec:
+  project: default
+  source:
+    path: k8s/ArgoCD/app-of-apps/ci
+    repoURL: https://github.com/deividssanches/devops
+    targetRevision: development
+    directory:
+      recurse: true
+      jsonnet: {}
+  destination:
+    namespace: ci-cd
+    server: https://192.168.64.3:6443
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+---
+
+

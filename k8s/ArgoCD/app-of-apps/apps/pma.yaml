@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/deividssanches/devops/
-    path: k8s/phpMyAdmi 
+    path: k8s/phpMyAdmin
     targetRevision: development
   destination:
     server: https://192.168.64.3:6443
