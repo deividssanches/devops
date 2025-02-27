@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonar-ingress
+  annotations:
+    #kubernetes.io/ingress.class: "nginx"
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure  
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: sonar.sanches.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sonar-service
+            port:
+              number: 9000
+  #ingressClassName: nginx  
+  ingressClassName: traefik        
