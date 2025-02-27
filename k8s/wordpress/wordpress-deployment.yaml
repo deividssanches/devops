@@ -52,7 +52,7 @@ spec:
         env:
         - name: WORDPRESS_DB_HOST
           #value: wordpress-mysql
-          value: mysql.mysql-std.svc.cluster.local
+          value: mysql.databases.svc.cluster.local
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
