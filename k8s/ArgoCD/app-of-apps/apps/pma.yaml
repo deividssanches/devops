@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+kind: ApplicationSet
 metadata:
   finalyzers:
     - resources-finalyzer.applications.argoproj.io
