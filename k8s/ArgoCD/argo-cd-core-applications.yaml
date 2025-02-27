@@ -24,7 +24,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd-applications
-  namespace: ci-cd
+  namespace: applications
 spec:
   project: default
   source:
@@ -35,7 +35,7 @@ spec:
       recurse: true
       jsonnet: {}
   destination:
-    namespace: ci-cd
+    namespace: applications
     server: https://192.168.64.3:6443
   syncPolicy:
     automated: 
