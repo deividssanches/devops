@@ -15,7 +15,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: sonar-service
+            name: sonar-svc
             port:
               number: 9000
   #ingressClassName: nginx  
