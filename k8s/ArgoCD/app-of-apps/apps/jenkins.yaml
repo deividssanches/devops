@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: application
 metadata:
   name: jenkins
+  namespace: ci-cd
 spec:
   project: default
   source:
