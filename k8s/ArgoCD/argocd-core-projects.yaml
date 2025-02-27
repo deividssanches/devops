@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: argocd
-  namespace: argocd
+  namespace: ci-cd
 spec:
   description: Core Argocd
   sourceRepos:
