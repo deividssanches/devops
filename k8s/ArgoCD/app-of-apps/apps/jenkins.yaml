@@ -1,19 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
-destination:
-  namespace: ci-cd
-  server: https://192.168.64.3:6443
 kind: application
 metadata:
-  labels:
-    app.kubernetes.io/instance: app-of-apps
   name: jenkins
-  namespace: ci-cd
-project: default
-source:
-  path: k8s/Jenkins/
-  repoURL: https://github.com/deividssanches/devops/
-  targetRevision: development
-spec: null
-syncPolicy:
-  automated:
-    prune: true
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/deividssanches/devops/
+    path: k8s/Jenkins/
+    targetRevision: development
+  destination:
+    server: https://192.168.64.3:6443
+    namespace: ci-cd
+  syncPolicy:
+    automated:
+      prune: true
