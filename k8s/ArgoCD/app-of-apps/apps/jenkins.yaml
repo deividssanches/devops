@@ -5,8 +5,8 @@ metadata:
 spec:
 project: default
 source:
-  repoURL: https://github.com/deividssanches/devops
-  path: k8s/Jenkins
+  repoURL: https://github.com/deividssanches/devops/
+  path: k8s/Jenkins/
   targetRevision: development
 destination:
   server: https://192.168.64.3:6443
