@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+spec:
+  destination: 
+    namespace: ci-cd
+    server: https://192.168.64.3:6443
+  source:
+    path: k8s/ArgoCD/app-of-apps/apps/
+    repoURL: https://github.com/deividssanches/devops/
+    targetRevision: development
+  sources: []
+  project: default

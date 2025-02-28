@@ -3,8 +3,11 @@ kind: Ingress
 metadata:
   name: ingress-argocd
   namespace: ci-cd
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure  
 spec:
-  ingressClassName: nginx
+  #ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: argocd.sanches.com
     http:
@@ -15,4 +18,5 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 80
+              number: 8080
+    

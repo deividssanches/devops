@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress
+  namespace: applications
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/deividssanches/devops/
+    path: k8s/wordpress
+    targetRevision: development
+  destination:
+    server: https://192.168.64.3:6443
+    namespace: applications
+  syncPolicy:
+    automated:
+      prune: true

@@ -1,0 +1,15 @@
+ 
+ apiVersion: v1
+ kind: PersistentVolumeClaim
+ metadata:
+  name: jenkins-pvc
+ spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+   #storageClassName: jenkns # Uncomment and specify if needed
+---
+
+

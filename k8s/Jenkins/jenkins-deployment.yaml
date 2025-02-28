@@ -1,32 +1,12 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: ci-cd
----
-apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: jenkins-admin
-  namespace: ci-cd
----
- apiVersion: v1
- kind: PersistentVolumeClaim
- metadata:
-  name: jenkins-pvc
-  namespace: ci-cd
- spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-   #storageClassName: jenkns # Uncomment and specify if needed
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
-  namespace: ci-cd
 spec:
   replicas: 1
   selector:
@@ -43,25 +23,19 @@ spec:
         fsGroup: 1000
       containers:
       - name: jenkins
-        image: deividsanches/jenkins-aws
-        # image: jenkins:lts
+        image: jenkins/jenkins:lts
         ports:
         - containerPort: 8080
         - containerPort: 50000
         env:
         - name: JAVA_OPTS
           value: "-Djenkins.install.runSetupWizard=true -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85"
-        - name: JENKINS_ADMIN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: jenkins-secrets
-              key: admin-password
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1000m"
+            memory: "256Mi"
+          #  cpu: "1000m"
           limits:
-            memory: "4Gi"
+            memory: "2Gi"
             cpu: "2000m"
         volumeMounts:
         - name: jenkins-data
@@ -91,7 +65,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins-service
-  namespace: ci-cd
 spec:
   type: ClusterIP
   ports:
@@ -105,7 +78,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins-agent-service
-  namespace: ci-cd
 spec:
   type: ClusterIP
   ports:

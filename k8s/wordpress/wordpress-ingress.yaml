@@ -1,22 +1,24 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: jenkins-ingress
+  name: wordpress-ingress
+  namespace: applications
   annotations:
     #kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure  
-    jenkins.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: jenkins.sanches.com
+  - host: wordpress.sanches.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: jenkins-service
+            name: wordpress
             port:
-              number: 8080
-  #ingressClassName: nginx  
-  ingressClassName: traefik        
+              number: 80
+  #ingressClassName: nginx   
+  ingressClassName: traefik       
