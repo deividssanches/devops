@@ -10,7 +10,7 @@ spec:
     path: k8s/wordpress
     targetRevision: development
   destination:
-    server: https://192.168.64.3:6443
+    server: https://rancher-desktop.sanches.com:6443
     namespace: applications
   syncPolicy:
     automated:

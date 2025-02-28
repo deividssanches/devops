@@ -10,7 +10,7 @@ spec:
     path: k8s/Jenkins/
     targetRevision: development
   destination:
-    server: https://192.168.64.3:6443
+    server: https://rancher-desktop.sanches.com:6443
     namespace: ci-cd
   syncPolicy:
     automated:

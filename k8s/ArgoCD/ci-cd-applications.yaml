@@ -14,7 +14,7 @@ spec:
       jsonnet: {}
   destination:
     namespace: ci-cd
-    server: https://192.168.64.3:6443
+    server: https://rancher-desktop.sanches.com:6443
   syncPolicy:
     automated: 
       prune: true
