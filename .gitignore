@@ -1,5 +1,5 @@
-.DS_Store
-
+# VScode
+.vscode
 .vscode/*
 .vscode/settings.json
 .vscode/tasks.json
@@ -9,8 +9,10 @@
 
 # secrets folder
 .secrets/*
+.secret
 
 .DS_Store
+# Sam
 
 .aws-sam/*
 .aws-sam
