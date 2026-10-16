@@ -11,3 +11,5 @@
 .secrets/*
 
 .DS_Store
+
+.aws-sam/*
