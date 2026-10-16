@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AWS: Debug Lambda Python Local",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/lambda_function.py",
+      "console": "integratedTerminal",
+      "args": [
+        "{\"body\": \"{\\\"test\\\": true}\"}"
+      ],
+      "env": {
+        "AWS_PROFILE": "localstack",
+        "AWS_REGION": "us-east-1",
+        "AWS_LAMBDA_FUNCTION_MEMORY_SIZE": "512"
+      },
+      "justMyCode": false
+    },
+    {
+      "name": "AWS: Debug Lambda Node Local",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/index.js",
+      "console": "integratedTerminal",
+      "env": {
+        "AWS_PROFILE": "localstack",
+        "AWS_REGION": "us-east-1"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "AWS: Attach to SAM Local (API)",
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "invokeTarget": {
+        "target": "api",
+        "templatePath": "${workspaceFolder}/template.yaml",
+        "logicalId": "MyFunction"
+      },
+      "api": {
+        "path": "/hello",
+        "httpMethod": "get",
+        "payload": {
+          "json": {}
+        }
+      },
+      "sam": {
+        "buildArguments": [
+          "--cached"
+        ]
+      },
+      "aws": {
+        "region": "us-east-1"
+      }
+    }
+  ]
+}
