@@ -1,39 +1,34 @@
+import boto3
 import json
 import os
 
 def lambda_handler(event, context):
-    # Pega das variáveis de ambiente do template.yaml
-    env = os.getenv("ENV", "desconhecido")
-    bucket = os.getenv("BUCKET_NAME", "sem-bucket")
+    # Pega do ENV do K8s, se não tiver, usa o padrão
+    endpoint = os.getenv('S3_ENDPOINT', 'http://localstack.infra.svc.cluster.local:4566')
+    ambiente = os.getenv('AMBIENTE', 'dev')
 
-    nome = "DevOps"
-    
-    # URL ?name=...
-    params = event.get("queryStringParameters")
-    if params and params.get("name"):
-        nome = params.get("name")
-    
-    # Body JSON {"name": "..."}
-    body = event.get("body")
-    if body:
-        try:
-            data = json.loads(body)
-            if data.get("name"):
-                nome = data.get("name")
-        except:
-            pass
+    s3 = boto3.client('s3', 
+        endpoint_url=endpoint,
+        aws_access_key_id='test',
+        aws_secret_access_key='test',
+        region_name='us-east-1'
+    )
 
-    # LOG - aparece no terminal do sam local
-    print(f"[LOG] Ambiente: {env} | Bucket: {bucket} | Nome recebido: {nome}")
+    try:
+        buckets = s3.list_buckets()
+        s3_status = f"Bucket meu-bucket-teste OK - {len(buckets['Buckets'])} buckets"
+    except Exception as e:
+        s3_status = f"Erro S3: {str(e)}"
+
+    body = json.loads(event.get('body', '{}')) if isinstance(event.get('body'), str) else {}
+    name = body.get('name', 'Deivids')
 
     return {
-        "statusCode": 200,
-        "headers": {"Content-Type": "application/json"},
-        "body": json.dumps({
-            "message": f"Agora sou {nome}!!!",
-            "ambiente": env,
-            "bucket_configurado": bucket,
-            "metodo": event.get("httpMethod"),
-            "status": "projeto finalizado com sucesso"
+        'statusCode': 200,
+        'body': json.dumps({
+            'ambiente': ambiente,
+            's3': s3_status,
+            'endpoint_usado': endpoint,
+            'message': f"Agora sou {name}!!!"
         })
     }
