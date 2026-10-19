@@ -1,8 +1,9 @@
 FROM python:3.12-slim
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install flask boto3
+RUN pip install --no-cache-dir -r requirements.txt
 COPY lambda_function.py app.py ./
-# NÃO copie .aws-sam
+
 EXPOSE 8080
-CMD ["python", "app.py"]
+# 2 workers, bind em 0.0.0.0
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "app:app"]
