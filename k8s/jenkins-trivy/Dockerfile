@@ -16,7 +16,9 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Permite jenkins usar docker.sock do host
-RUN usermod -aG docker jenkins
+RUN groupadd -g 999 docker || true && \
+    usermod -aG docker jenkins && \
+    chmod 666 /var/run/docker.sock || true 
 
 USER jenkins
 

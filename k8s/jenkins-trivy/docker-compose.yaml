@@ -10,6 +10,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${HOME}/.kube:/var/jenkins_home/.kube
       - trivy-cache:/var/jenkins_home/.cache
+    group_add:
+      - 0
+      - 999
+      - 998
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
 
